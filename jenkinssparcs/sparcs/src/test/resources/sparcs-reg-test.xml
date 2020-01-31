@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="properties"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath*:cucumber.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- load properties from cucumber.properties file -->
+    <bean id="seleniumContext" class="edu.cmu.ea.test.sparcs.SeleniumContext"
+          init-method="init">
+        <property name="host" value="${sparcs.test.cucumber.host}"/>
+        <property name="reportLocation" value="${sparcs.test.cucumber.reportlocation}"/>
+        <property name="user" value="${sparcs.test.cucumber.user}"/>
+        <property name="password" value="${sparcs.test.cucumber.password}"/>
+    </bean>
+
+</beans>
